@@ -1,0 +1,3 @@
+From VideoTutorials - ASP.NET MVC 5  Build a Complete eCommerce App
+https://www.youtube.com/playlist?list=PL2Q8rFbm-4ruTcZY39MNOsEu4p76HQ5VX
+https://github.com/etrupja/complete-ecommerce-aspnet-mvc-application
