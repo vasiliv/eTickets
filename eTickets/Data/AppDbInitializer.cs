@@ -5,15 +5,35 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace eTickets.Data
 {
     public class AppDbInitializer
     {
+        //IApplicationBuilder - Defines a class that provides the mechanisms to configure
+        //an application's request pipeline.
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
+            //IServiceProvider ApplicationServices - property of IApplicationBuilder.
+            //Gets or sets the System.IServiceProvider that provides access to the
+            //application's service container.
+
+            //public static IServiceScope CreateScope(this IServiceProvider provider);
+            //Creates a new Microsoft.Extensions.DependencyInjection.IServiceScope that can
+            //be used to resolve scoped services.
+
+            // Returns: A Microsoft.Extensions.DependencyInjection.IServiceScope
+            // that can be used to resolve scoped services.
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
+                //IServiceProvider ServiceProvider { get; } - IServiceScope property
+                //used to resolve dependencies from the scope
+
+                //public static T? GetService<T>(this IServiceProvider provider) - 
+                //method of ServiceProviderServiceExtensions
+                //Get service of type T from the System.IServiceProvider.
+                // Returns: A service object of type T or null if there is no such service.
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
                 // create db if not exists
