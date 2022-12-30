@@ -1,6 +1,7 @@
 ﻿using eTickets.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eTickets.Controllers
@@ -14,7 +15,7 @@ namespace eTickets.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movies.Include(m => m.Cinema).ToListAsync());
+            return View(await _context.Movies.Include(m => m.Cinema).OrderBy(m => m.Name).ToListAsync());
         }
     }
 }
