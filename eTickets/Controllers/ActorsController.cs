@@ -23,5 +23,9 @@ namespace eTickets.Controllers
             //return View(_context.Actors.ToList());
             return View(await _service.GetAll());
         }
+        public async Task<IActionResult> Create()
+        {            
+            return View();
+        }
     }
 }

@@ -8,7 +8,7 @@
     <div class="col-md-8 offset-md-2">
         <table>
             <thead>
-                <tr class="text-center>
+                <div class="text-center>
                     <th>@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
                     <th>@Html.DisplayNameFor(model => model.FullName)</th>
                     <th>@Html.DisplayNameFor(model => model.Bio)</th>
@@ -38,4 +38,8 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<div style ="position:fixed; right: 25px; bottom: 25px;" class="text-white">
+    <a asp-controller="Actors" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add new </a>
 </div>
