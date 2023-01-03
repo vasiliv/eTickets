@@ -43,8 +43,26 @@ namespace eTickets.Controllers
         {
             var actorDetails = await _service.GetByIdAsync(id);
             if (actorDetails == null)
-                return View ("Empty");
+                return View ("NotFound");
             return View(actorDetails); 
+        }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null)
+                return View("NotFound");
+            return View(actorDetails);
+        }
+        [HttpPost]
+        //Actor class contains also Id. we do not want it to bind
+        public async Task<IActionResult> Edit(int id, Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
