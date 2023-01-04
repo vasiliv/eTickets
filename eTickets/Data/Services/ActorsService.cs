@@ -24,17 +24,16 @@ namespace eTickets.Data.Services
             var actor = await _context.Actors.FirstOrDefaultAsync(a => a.Id == id);
             _context.Actors.Remove(actor);
             await _context.SaveChangesAsync();
+        }        
+        public async Task<IEnumerable<Actor>> GetAllAsync()
+        {
+            return await _context.Actors.ToListAsync();
         }
-        //Changed to generic
-        //public async Task<IEnumerable<Actor>> GetAllAsync()
-        //{
-        //    return await _context.Actors.ToListAsync();
-        //}
 
-        //public async Task<Actor> GetByIdAsync(int id)
-        //{
-        //    return(await _context.Actors.FirstOrDefaultAsync(a => a.Id == id));
-        //}
+        public async Task<Actor> GetByIdAsync(int id)
+        {
+            return (await _context.Actors.FirstOrDefaultAsync(a => a.Id == id));
+        }
 
         public async Task<Actor> UpdateAsync(int id, Actor newActor)
         {
