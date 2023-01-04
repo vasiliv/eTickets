@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace eTickets.Controllers
 {
+    //kontroleridan egreve gadadis EntityBaseRepositorishi
     public class ActorsController : Controller
     {
         //private readonly AppDbContext _context;
