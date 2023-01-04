@@ -17,13 +17,18 @@ namespace eTickets.Data.Base
             _context = context;
         }
 
-        public async Task AddAsync(T entity) => await _context.Set<T>().AddAsync(entity);        
+        public async Task AddAsync(T entity)
+        {
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
+        }      
 
         public async Task DeleteAsync(int id)
         {
             var entity = await _context.Set<T>().FirstOrDefaultAsync(t => t.Id == id);
             EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
@@ -38,6 +43,7 @@ namespace eTickets.Data.Base
             //This tells the context that the entity has been modified and should be updated in the
             //database when the context is saved.
             entityEntry.State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }
