@@ -3,10 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System;
 using eTickets.Data.Enums;
+using eTickets.Data.Base;
 
 namespace eTickets.Models
 {
-    public class Movie
+    public class Movie : IEntityBase
     {
         [Key]
         public int Id { get; set; }
