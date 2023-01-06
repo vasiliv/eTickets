@@ -70,5 +70,23 @@ namespace eTickets.Controllers
             //otherwise return same view
             return View(producer);
         }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var producerDetails = await _service.GetByIdAsync(id);
+            if (producerDetails == null)
+                return View("NotFound");
+            return View(producerDetails);
+        }
+        [HttpPost]
+        //We can not have 2 methods with same name and same argument
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var producerDetails = await _service.GetByIdAsync(id);
+            if (producerDetails == null)
+                return View("NotFound");
+
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
