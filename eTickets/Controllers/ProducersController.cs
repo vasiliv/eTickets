@@ -46,5 +46,29 @@ namespace eTickets.Controllers
             await _service.AddAsync(producer);
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var producerDetails = await _service.GetByIdAsync(id);
+            if (producerDetails == null)
+                return View("NotFound");
+            return View(producerDetails);
+        }
+        [HttpPost]
+        //id comes from request url
+        public async Task<IActionResult> Edit(int id, Producer producer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(producer);
+            }
+
+            if (id == producer.Id)
+            {
+                await _service.UpdateAsync(id,producer);
+                return RedirectToAction(nameof(Index));
+            }
+            //otherwise return same view
+            return View(producer);
+        }
     }
 }

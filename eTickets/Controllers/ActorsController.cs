@@ -54,8 +54,8 @@ namespace eTickets.Controllers
                 return View("NotFound");
             return View(actorDetails);
         }
-        [HttpPost]
-        //Actor class contains also Id. we do not want it to bind
+        [HttpPost]    
+        //id comes from request url
         public async Task<IActionResult> Edit(int id, Actor actor)
         {
             if (!ModelState.IsValid)
