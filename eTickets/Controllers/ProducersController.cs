@@ -1,5 +1,6 @@
 ﻿using eTickets.Data;
 using eTickets.Data.Services;
+using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -29,6 +30,21 @@ namespace eTickets.Controllers
             if (producerDetails == null)
                 return View("NotFound");
             return View(producerDetails);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        //Producer class contains also Id. we do not want it to bind
+        public async Task<IActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")] Producer producer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(producer);
+            }
+            await _service.AddAsync(producer);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
