@@ -22,7 +22,8 @@ namespace eTickets.Controllers
         public async Task<IActionResult> Index()
         {
             //return View(await _context.Movies.Include(m => m.Cinema).OrderBy(m => m.Name).ToListAsync());
-            return View(await _service.GetAllAsync());
+            //we use overloaded version of GetAllAsync of EntityBaseRepository
+            return View(await _service.GetAllAsync(m => m.Cinema));
         }
     }
 }
