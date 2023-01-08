@@ -25,5 +25,9 @@ namespace eTickets.Controllers
             //we use overloaded version of GetAllAsync of EntityBaseRepository
             return View(await _service.GetAllAsync(m => m.Cinema));
         }
+        public async Task<IActionResult> Details(int id)
+        {
+            return View(await _service.GetMOvieById(id));
+        }
     }
 }
