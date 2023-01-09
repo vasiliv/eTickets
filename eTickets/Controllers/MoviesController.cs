@@ -29,5 +29,9 @@ namespace eTickets.Controllers
         {
             return View(await _service.GetMOvieById(id));
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
