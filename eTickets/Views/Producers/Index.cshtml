@@ -40,6 +40,10 @@
     </div>
 </div>
 
+@*replaced with partial view
 <tr style="position:fixed; right: 25px; bottom: 25px;" class="text-white">
     <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add new </a>
-</tr>
+</tr>*@
+
+@*Second parameter is controller name*@
+@await Html.PartialAsync("_CreateItem", "Producers");

@@ -14,7 +14,7 @@ namespace eTickets.Data.Services
         {
             _context = context;
         }
-        public async Task<Movie> GetMOvieById(int id)
+        public async Task<Movie> GetMovieById(int id)
         {
             var movieDetails = _context.Movies
                 .Include(c => c.Cinema)

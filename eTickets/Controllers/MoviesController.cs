@@ -28,7 +28,7 @@ namespace eTickets.Controllers
         }
         public async Task<IActionResult> Details(int id)
         {
-            return View(await _service.GetMOvieById(id));
+            return View(await _service.GetMovieById(id));
         }
         public async Task<IActionResult> Create()
         {
