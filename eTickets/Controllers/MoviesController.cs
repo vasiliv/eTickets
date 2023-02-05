@@ -4,6 +4,7 @@ using eTickets.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,6 +27,18 @@ namespace eTickets.Controllers
             //return View(await _context.Movies.Include(m => m.Cinema).OrderBy(m => m.Name).ToListAsync());
             //we use overloaded version of GetAllAsync of EntityBaseRepository
             return View(await _service.GetAllAsync(m => m.Cinema));
+        }
+        //searchString comes from _Layout Form class
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allMovies = await _service.GetAllAsync(m => m.Cinema);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var filteredResult = allMovies.Where(n => n.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) != -1
+                                                        || n.Description.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) != -1).ToList();
+                return View("Index", filteredResult);
+            }
+            return View("Index", allMovies);
         }
         public async Task<IActionResult> Details(int id)
         {
